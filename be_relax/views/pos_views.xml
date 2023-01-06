@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_pos_order_inherit" model="ir.ui.view">
+        <field name="name">view.pos.order.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//page[@name='extra']/group[1]" position="inside">
+                <group string="Reporting Data">
+                    <field name="compute_sales_report" invisible="1"/>
+                    <field name="total_qty"/>
+                    <field name="df_amount"/>
+                    <field name="dp_amount"/>
+                    <field name="discount_amount"/>
+                    <field name="total_excl_tax"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.pos.order.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="compute_sales_report" invisible="1"/>
+                    <field name="total_qty"/>
+                    <field name="df_amount"/>
+                    <field name="dp_amount"/>
+                    <field name="discount_amount"/>
+                    <field name="total_excl_tax"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="tip_amount"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="before">
+                <field name="amount_tax"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
